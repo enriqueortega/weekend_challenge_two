@@ -18,3 +18,16 @@ header {
   border-radius: 100%;
   display: inline-block;
 }
+
+.highlight {
+  background-color: black;
+}
+
+.next {
+  float:right;
+}
+
+.carouselIndex {
+  text-align: center;
+  position:relative;
+}

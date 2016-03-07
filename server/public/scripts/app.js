@@ -1,7 +1,7 @@
 var counter = 0;
 var totalPeople = 0;
 var fadeduration = 500;
-var timer = setInterval(toggleNext, 10000);
+var timer = setInterval(toggleNext, 4000);
 
 $(document).ready(function(){
     $.ajax({
@@ -43,6 +43,7 @@ function appendDom(data){
 
 function startSquence(){
   $('.kapper-' + counter).fadeIn(fadeduration);
+  highlightSelection();
   counter++;
 }
 
@@ -56,6 +57,8 @@ function toggleNext(){
     $('.kapper-' + (totalPeople - 1)).fadeOut(fadeduration);
   }
   $('.kapper-' + (counter - 1)).fadeOut(fadeduration);
+
+  highlightSelection();
   counter++;
 
   timerReset();
@@ -63,7 +66,10 @@ function toggleNext(){
 
 
 function togglePrev(){
+
   counter--;
+
+
   if(counter < 0){
     counter = (totalPeople - 1);
   }
@@ -74,25 +80,20 @@ function togglePrev(){
   }
   $('.kapper-' + (counter - 1)).delay(fadeduration).fadeIn(fadeduration);
 
+  highlightSelection();
   timerReset();
 }
 
 function indexSelector(){
-  //TODO: Hire hitman
-
-
-  console.log("foo");
   var selection = $(this).data("person");
-  console.log(selection);
+
+  //targets current kappan to fade out
   $('.kapper-' + (counter - 1)).fadeOut(fadeduration);
 
   counter = selection;
-
-
-  //targets current kappan to fade out
+  highlightSelection();
   //fades in new kappan
   $('.kapper-' + selection).delay(fadeduration).fadeIn(fadeduration);
-
 
   counter++;
   //resets timer
@@ -103,4 +104,13 @@ function indexSelector(){
 function timerReset(){
   clearInterval(timer);
   timer = setInterval(toggleNext, 4000);
+}
+
+function highlightSelection(){
+
+  for(var j=0; j < totalPeople; j++){
+    $('#' + j).removeClass('highlight');
+  }
+  $('#' + (counter)).addClass('highlight');
+
 }
