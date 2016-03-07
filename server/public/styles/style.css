@@ -1,0 +1,20 @@
+header {
+  text-align: center;
+}
+
+.buttons {
+  display: block;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.indexStyle {
+  height: 20px;
+  width: 20px;
+  background-color: #ccc;
+  border-radius: 100%;
+  display: inline-block;
+}
